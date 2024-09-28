@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import csv
 
-csvfile = open('TimesJobs', 'w', encoding='utf-8', newline='')
+csvfile = open('TimesJobs.csv', 'w', encoding='utf-8', newline='')
 writer = csv.writer(csvfile)
 writer.writerow(['Job Title', 'Company Name', 'Skills'])
 
@@ -13,9 +13,9 @@ for i in range(10):
     jobs = soup.find_all('li', class_='clearfix job-bx wht-shd-bx')
 
     for job in jobs:
-        job_title = job.find('a').text.strip().replace(' ', '')
-        company_name = job.find('h3', class_='joblist-comp-name').text.strip().replace(' ', '')
-        skills = job.find('span', class_='srp-skills').text.strip().replace(' ', '')
+        job_title = job.find('a').text.strip()
+        company_name = job.find('h3', class_='joblist-comp-name').text.strip()
+        skills = job.find('span', class_='srp-skills').text.strip()
         
         writer.writerow([job_title, company_name, skills])
         
